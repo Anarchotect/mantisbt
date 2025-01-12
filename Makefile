@@ -1,12 +1,15 @@
 HTTPS = https://sourceforge.net/projects/mantisbt/files/mantis-stable/2.27.0/mantisbt-2.27.0.tar.gz/download
 
-all: mantis
-	docker build --no-cache -t anarchotect/mantisbt .
+all: mantisbt-2.27.0 mantis_ed25519
+	docker build $(if $(NEW),--no-cache,) -t anarchotect/mantisbt .
+
+mantis_ed25519:
+	ssh-keygen -C $@ -t ed25519 -a 100 -N 'YourSecureKeyPassword' -f $@
 
 push:
 	docker push anarchotect/mantisbt
 
-mantis:
+mantisbt-2.27.0:
 	wget $(HTTPS) -O - | tar -xz -C ./
 
 up:
@@ -17,3 +20,9 @@ down:
 
 enter:
 	sudo docker exec -it mantisbt /bin/bash
+
+reset:
+	$(MAKE) down
+	$(MAKE) all
+	sudo rm -rf /srv/mantisbt
+	$(MAKE) up

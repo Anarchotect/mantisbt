@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  mantis:
+    container_name: mantisbt
+    image: anarchotect/mantisbt
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: YourSecurePostgresPassword
+    ports:
+      - 192.168.7.123:443:443
+      - 192.168.7.123:80:80
+      - 192.168.7.123:222:22
+    volumes:
+      - /srv/mantisbt/config:/etc/postgresql
+      - /srv/mantisbt/data:/var/lib/postgresql/15/main
+      - /srv/mantisbt/logs:/var/log/postgresql
+      - /srv/mantisbt/mantisconf:/var/www/mantisbt-2.27.0/config/
