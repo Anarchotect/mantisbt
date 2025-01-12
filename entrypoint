@@ -1,16 +1,12 @@
 #!/bin/bash
 
-[[ -d /etc/postgresql/15/ ]] || {
-	pg_createcluster 15 main
-	echo "host all all localhost trust" > /etc/postgresql/15/main/pg_hba.conf
-	service postgresql start
-	psql -h localhost -U postgres -d postgres -c "ALTER USER postgres PASSWORD '${POSTGRES_PASSWORD}'"
-	sed -i 's/trust/md5/' /etc/postgresql/15/main/pg_hba.conf
+[[ -e /home/tunnel/.ssh/authorized_keys ]] || {
+	ssh-keygen -C tunnel -t ed25519 -a 100 -N "${SSH_PASSWORD}" -f /home/tunnel/.ssh/mantis_ed25519
+	mv /home/tunnel/.ssh/mantis_ed25519.pub /home/tunnel/.ssh/authorized_keys
 }
 
 chmod 777 /var/www/mantisbt-2.27.0/config/
 service ssh start
-service postgresql restart
 service php8.2-fpm start
 service nginx start
 sleep infinity

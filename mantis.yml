@@ -6,13 +6,21 @@ services:
     image: anarchotect/mantisbt
     restart: always
     environment:
-      POSTGRES_PASSWORD: YourSecurePostgresPassword
+      SSH_PASSWORD: YourSecureSSHPassword
     ports:
       - 192.168.1.1:443:443
       - 192.168.1.1:80:80
       - 192.168.1.1:222:22
     volumes:
-      - /srv/mantisbt/config:/etc/postgresql
-      - /srv/mantisbt/data:/var/lib/postgresql/15/main
-      - /srv/mantisbt/logs:/var/log/postgresql
-      - /srv/mantisbt/mantisconf:/var/www/mantisbt-2.27.0/config/
+      - /srv/mantisbt/ssh/:/home/tunnel/.ssh/
+      - /srv/mantisbt/conf/:/var/www/mantisbt-2.27.0/config/
+
+  mantisdb:
+    container_name: mantisdb
+    image: postgres:14.1-alpine
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: YourSecurePostgresPassword
+    volumes:
+      - /srv/mantisbt/db/:/var/lib/postgresql/data/
