@@ -17,7 +17,7 @@ services:
 
   mantisdb:
     container_name: mantisdb
-    image: postgres:14.1-alpine
+    image: postgres:15.10-alpine
     restart: always
     environment:
       POSTGRES_USER: postgres
