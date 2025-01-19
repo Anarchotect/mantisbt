@@ -27,3 +27,11 @@ SSH Tunnel:
   Authentication:        Identity file
   Identity file:         /srv/mantisbt/ssh/mantis_ed25519
   Password:              YourSecureSSHPassword
+
+You can bypass the user password setting by modifying the database directly.
+
+This sets the user 'YourUsername' to have the password 'root':
+
+UPDATE public.mantis_user_table
+SET password='63a9f0ea7bb98050796b649e85481845'
+WHERE username = 'YourUsername'

@@ -7,6 +7,7 @@ RUN chmod 755 /var/www/mantisbt-2.27.0/
 RUN chown -R www-data:www-data /var/www/
 COPY default /etc/nginx/sites-enabled/default
 
+COPY sshd_config /etc/ssh/sshd_config
 RUN useradd --create-home tunnel
 RUN sed -i 's/tunnel:!/tunnel:*/' /etc/shadow
 
