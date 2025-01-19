@@ -12,7 +12,7 @@
 The credentials to log in to Mantis are `administrator:root`  
 Make yourself a user and change the administrator password  
 
-# Use SSH tunneling to access the database with `pgadmin`
+# Use SSH tunneling with `pgadmin`
 | Connection             |                            |
 |------------------------|----------------------------|
 |  Host name/address:    | mantisdb                   |
