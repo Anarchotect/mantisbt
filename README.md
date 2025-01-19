@@ -14,14 +14,16 @@ Make yourself a user and change the administrator password
 
 Use ssh tunneling to access the database with pgadmin  
 
-Connection:  
+| Connection             |                            |
+|------------------------|----------------------------|
 |  Host name/address:    | mantisdb                   |
 |  Port:                 | 5432                       |
 |  Maintenance database: | postgres                   |
 |  Username:             | postgres                   |
 |  Password:             | YourSecurePostgresPassword |
 
-SSH Tunnel:
+| SSH Tunnel             |                                  |
+|------------------------|----------------------------------|
 | Tunnel host:           | 192.168.1.1                      |
 | Tunnel port:           | 222                              |
 | Username:              | tunnel                           |
