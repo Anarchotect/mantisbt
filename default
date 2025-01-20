@@ -1,6 +1,7 @@
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
+	client_max_body_size 12m;
 
 	root /var/www/mantisbt-2.27.0;
 
